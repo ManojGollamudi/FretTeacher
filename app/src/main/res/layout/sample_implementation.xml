@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/keyboard"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/dark_keyboard_grey"
+        android:layout_alignParentBottom="true">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_keyboard_grey"
+            android:columnCount="4"
+            android:rowCount="2">
+
+            <Button
+                android:id="@+id/a_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:onClick="setA"
+                android:text="A"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/b_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="24dp"
+                android:onClick="setB"
+                android:text="B"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/c_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setC"
+                android:text="@string/c"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/d_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setD"
+                android:text="D"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/e_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setE"
+                android:text="E"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/f_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setF"
+                android:text="F"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/g_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:onClick="setG"
+                android:text="G"
+                android:textColor="@color/bluedark"
+                android:textSize="25sp" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <ToggleButton
+                    android:id="@+id/sharp_toggle"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/bluedark"
+                    android:textOff="♯"
+                    android:textOn="♯"
+                    android:textSize="25sp" />
+
+                <ToggleButton
+                    android:id="@+id/flat_toggle"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:text="ToggleButton"
+                    android:textColor="@color/bluedark"
+                    android:textOff="♭"
+                    android:textOn="♭"
+                    android:textSize="25sp" />
+            </GridLayout>
+        </GridLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gridLayout"
+            android:columnCount="2">
+
+            <Button
+                android:id="@+id/button_reference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:text="Reference"
+                android:textColor="@color/bluedark"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:text="Submit"
+                android:textColor="@color/bluedark"
+                android:textSize="15sp" />
+
+
+        </GridLayout>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

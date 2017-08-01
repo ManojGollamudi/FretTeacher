@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "@color/bluedark">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/result"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20sp"
+        android:text = "YOUR SCORE:"
+        android:gravity="center"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="score"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="90sp" />
+
+    <Button
+        android:id="@+id/return_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border_tan"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:onClick="return_menu"
+        android:text="Return to Menu"
+        android:textColor="@color/dark" />
+
+    <Button
+        android:id="@+id/restart_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/return_button"
+        android:layout_margin="40dp"
+        android:background="@drawable/border_tan"
+        android:onClick="restart"
+        android:text="Restart"
+        android:textColor="@color/dark" />
+
+</RelativeLayout>
