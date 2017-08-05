@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".GameList" android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainGame" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".MainGameNew" android:screenOrientation="portrait" ></activity>
         <activity android:name=".End" android:screenOrientation="portrait"></activity>
     </application>
 
