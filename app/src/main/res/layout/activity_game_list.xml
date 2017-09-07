@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/bluedark">
 
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/my_toolbar"
@@ -14,207 +15,42 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextColor="@color/dark" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview_instruct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:gravity="left"
-            android:text="Please select a group of frets to learn:"
-            android:textColor="@color/bluedark"
-            android:textSize="20sp" />
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview_choose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cardview_instruct"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/text_1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="25dp"
-                android:text="Frets 1 and 2"
-                android:textColor="@color/bluedark"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button_12"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/border_tan"
-                android:onClick="Start12"
-                android:text="Start"
-                android:textColor="@color/dark"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/text_3_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/text_1_2"
-                android:layout_alignStart="@+id/text_1_2"
-                android:layout_below="@+id/text_1_2"
-                android:layout_marginTop="30dp"
-                android:text="Frets 3 and 4"
-                android:textColor="@color/bluedark"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button_34"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@+id/button_12"
-                android:layout_alignStart="@+id/button_12"
-                android:layout_alignTop="@+id/text_3_4"
-                android:background="@drawable/border_tan"
-                android:onClick="Start34"
-                android:text="Start"
-                android:textColor="@color/dark"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/text_5_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/text_1_2"
-                android:layout_alignStart="@+id/text_1_2"
-                android:layout_below="@+id/text_3_4"
-                android:layout_marginTop="30dp"
-                android:text="Frets 5 and 6"
-                android:textColor="@color/bluedark"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button_56"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@+id/button_34"
-                android:layout_alignStart="@+id/button_34"
-                android:layout_alignTop="@+id/text_5_6"
-                android:background="@drawable/border_tan"
-                android:onClick="Start56"
-                android:text="Start"
-                android:textColor="@color/dark"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/text_7_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/text_5_6"
-                android:layout_alignStart="@+id/text_5_6"
-                android:layout_below="@+id/text_5_6"
-                android:layout_marginTop="30dp"
-                android:text="Frets 7 and 8"
-                android:textColor="@color/bluedark"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button_78"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@+id/button_56"
-                android:layout_alignStart="@+id/button_56"
-                android:layout_alignTop="@id/text_7_8"
-                android:background="@drawable/border_tan"
-                android:onClick="Start78"
-                android:text="Start"
-                android:textColor="@color/dark"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/text_9_11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/text_7_8"
-                android:layout_alignStart="@+id/text_7_8"
-                android:layout_below="@+id/text_7_8"
-                android:layout_marginTop="30dp"
-                android:text="Frets 9 - 11"
-                android:textColor="@color/bluedark"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/button_911"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@+id/button_78"
-                android:layout_alignStart="@+id/button_78"
-                android:layout_alignTop="@+id/text_9_11"
-                android:background="@drawable/border_tan"
-                android:onClick="Start911"
-                android:text="Start"
-                android:textColor="@color/dark"
-                android:textSize="15sp" />
-
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardview_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cardview_choose"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
-
-            <CheckBox
-                android:id="@+id/checkbox_sound"
+                android:id="@+id/select_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:checked="true"
-                android:onClick="onClickCheckbox"
-                android:buttonTint="@color/dark"
-                android:text="Play sound" />
+                android:layout_margin="10dp"
+                android:layout_below="@+id/my_toolbar"
+                android:textSize="15sp"
+                android:text="Select a range of frets:"
+                android:textColor="@color/dark"/>
 
             <CheckBox
                 android:id="@+id/checkbox_lefty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/checkbox_sound"
                 android:buttonTint="@color/dark"
                 android:text="Lefty mode"
-                android:onClick="onClickCheckbox"/>
+                android:textColor="@color/white"
+                android:onClick="onClickCheckbox" />
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+            <CheckBox
+                android:id="@+id/checkbox_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/white"
+                android:checked="true"
+                android:onClick="onClickCheckbox"
+                android:buttonTint="@color/dark"
+                android:text="Play sound" />
+
+
+
 
 </RelativeLayout>

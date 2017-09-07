@@ -7,11 +7,12 @@
     <color name = "lightRed">#e87461</color>
     <color name = "white">#FAFAFA</color>
     <color name = "light">#DFF2D8</color>
-    <color name = "dark"># </color>
+    <color name = "dark">#c1ae7c</color>
     <color name = "tan">#ccad8f</color>
     <color name = "blue">#87BCDE</color>
     <color name = "bluedark">#18314f</color>
     <color name = "keyboardgrey">#e9e9e9</color>
     <color name = "background">#fff3f3f3</color>
     <color name = "dark_keyboard_grey">#7F7F7F</color>
+    <color name = "black">#000000</color>
 </resources>

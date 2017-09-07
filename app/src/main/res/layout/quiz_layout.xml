@@ -22,11 +22,75 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextColor="@color/dark" />
 
+    <GridLayout
+        android:id="@+id/infoGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@id/my_toolbar"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <TextView
+            android:id="@+id/timer_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_row="0"
+            android:gravity="center"
+            android:text="Time:"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+
+        <Chronometer
+            android:id="@+id/timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="3dp"
+            android:layout_row="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/score_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_row="0"
+            android:gravity="center"
+            android:text="Current Score:"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/current_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="3dp"
+            android:layout_row="1"
+            android:gravity="center"
+            android:text="0 / 0"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+    </GridLayout>
+
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/my_toolbar"
+        android:layout_below="@+id/infoGrid"
+        android:layout_margin="5dp"
         card_view:cardElevation = "4dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -81,46 +145,6 @@
 
     </android.support.v7.widget.CardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/card_view_image"
-        android:weightSum="1">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <Chronometer
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/chronometer"
-            android:layout_margin="10dp" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/best_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/card_view_image"
-            android:layout_below="@id/card_view_image"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Best Score:    --  "
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/current_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/best_score"
-            android:layout_below="@id/best_score"
-            android:layout_marginTop="5dp"
-            android:text="Current Score: 0 / 0"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 
     <GridLayout
         android:id="@+id/IOGrid"
@@ -141,6 +165,7 @@
             android:layout_row="0"
             android:gravity="center"
             android:text="Your answer:"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
@@ -156,7 +181,7 @@
             android:gravity="center"
             android:maxLength="2"
             android:textColor="@color/black"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/answer_label"
@@ -168,6 +193,7 @@
             android:layout_row="0"
             android:gravity="center"
             android:text="Correct answer:"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
@@ -182,7 +208,7 @@
             android:background="@drawable/border_tan"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
     </GridLayout>
 
@@ -338,17 +364,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/gridLayout"
             android:columnCount="2">
-
-            <Button
-                android:id="@+id/button_reference"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill_horizontal"
-                android:text="Reference"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/next_button"

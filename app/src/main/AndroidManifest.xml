@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameList" android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".MainGameNew" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".GameList" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Quiz" android:screenOrientation="portrait" ></activity>
         <activity android:name=".End" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Flashcards" android:screenOrientation="landscape"></activity>
+        <activity android:name=".FlashcardsFretpicker" ></activity>
     </application>
 
 </manifest>

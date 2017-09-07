@@ -3,8 +3,8 @@
     <alpha
         android:fromAlpha="0"
         android:toAlpha="1"
-        android:duration="2000"
-        android:startOffset="4000"
+        android:duration="0"
+        android:startOffset = "100"
         android:fillAfter="true">
     </alpha>
 </set>
