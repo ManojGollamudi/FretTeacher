@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".TitleScreen" android:screenOrientation="portrait">
+        <activity android:name=".titleScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameList" android:screenOrientation="portrait"></activity>
-        <activity android:name=".Quiz" android:screenOrientation="portrait" ></activity>
-        <activity android:name=".End" android:screenOrientation="portrait"></activity>
-        <activity android:name=".Flashcards" android:screenOrientation="landscape"></activity>
-        <activity android:name=".FlashcardsFretpicker" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".gameList" android:screenOrientation="portrait"></activity>
+        <activity android:name=".quiz" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".end" android:screenOrientation="portrait"></activity>
+        <activity android:name=".flashcards" android:screenOrientation="landscape"></activity>
+        <activity android:name=".flashcardsFretpicker" android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

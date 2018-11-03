@@ -1,23 +1,27 @@
 package com.manojgollamudi.fretteacher;
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
 
 
-public class reference_fragment extends DialogFragment {
+/**
+ * Created by mgollamudi on 9/10/17.
+ */
+
+public class flashcardInstructions extends DialogFragment {
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.layout_reference, null));
+        builder.setView(inflater.inflate(R.layout.flashcards_instructions_layout, null));
 
         return builder.create();
     }
+
+
+
 }

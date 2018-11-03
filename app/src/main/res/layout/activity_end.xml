@@ -35,7 +35,7 @@
         android:background="@drawable/border_tan"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:onClick="return_menu"
+        android:onClick="returnMenu"
         android:text="Return to Menu"
         android:textColor="@color/dark" />
 

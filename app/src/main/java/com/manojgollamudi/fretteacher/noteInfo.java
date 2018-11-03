@@ -7,13 +7,13 @@ import android.media.MediaPlayer;
  * Created by mgollamudi on 7/9/17.
  */
 
-public class note_info {
+public class noteInfo {
     private float x;
     private float y;
     private String name;
     private MediaPlayer mp;
     private int fretnumber;
-    public note_info(float x_in, float y_in, String name_in, MediaPlayer mp_in, int fretnumber_in){
+    public noteInfo(float x_in, float y_in, String name_in, MediaPlayer mp_in, int fretnumber_in){
         this.x = x_in;
         this.y = y_in;
         this.name = name_in;

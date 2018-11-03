@@ -31,25 +31,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Vector;
 
-import static com.manojgollamudi.fretteacher.GameList.transitionToast;
+import static com.manojgollamudi.fretteacher.gameList.transitionToast;
 
 
-public class Flashcards extends AppCompatActivity {
-    //boolean to keep track of submit/next button. False = button named submit, true = named next.
-    boolean submit_next = false;
-
+public class flashcards extends AppCompatActivity {
     //boolean to keep track of state
     boolean state = false;
 
     //booleans to keep track of user preferences: sound and lefty mode
-    boolean sound_bool = false;
-    boolean lefty_bool;
+    boolean sound_on = false;
+    boolean is_lefty;
 
     boolean range_of_frets;
-    //boolean for first swipe
-    boolean first_swipe = true;
+
     //keep track of when the flashcard is "flipped"
     boolean is_flipped = false;
 
@@ -57,34 +52,18 @@ public class Flashcards extends AppCompatActivity {
     float x_prev = 0;
     float y_prev = 0;
 
-    //NEED TO BE IN INTENT FROM LAST ACTIVITY
     //number of notes
     int num_notes = 6;
 
     boolean DoNotShowAgain;
-
-    ObjectAnimator card_top_anim;
-    ObjectAnimator card_bottom_anim;
-
-    //float x_float = 0f;
-    //float y_float = 0f;
-
-    int bottom = 0;
 
     //to keep track of score
     int score = 0;
     int total = 0;
     int count = 0;
 
-    //how many frets are showing?
-    int frets_shown = 3;
-
     //for use keeping track of which frets are being used
     int fretnos = 0;
-
-    //variable to store user input, to be compared with fragment tags
-    String note_input = "NONE";
-    String textview_text = "";
 
     //map of string notes, used to associate equivalent notes
     Map <String, String> noteMap = new HashMap<>(24);
@@ -92,35 +71,13 @@ public class Flashcards extends AppCompatActivity {
     //map of index - note notes, used to index notes
     Map <Integer, String> indexMap = new HashMap<>(12);
 
-    //map of name(string)-song(int) notes, used to play audio for notes
-    Vector<MediaPlayer> mp_vector = new Vector<>();
-
     //vector of name_coordinate objects
-    ArrayList<note_info> notes = new ArrayList<>();
+    ArrayList<noteInfo> notes = new ArrayList<>();
 
     //index for looping through notes
     int notes_index = 0;
 
-    //switch to keep track of top and bottom card
-    boolean card_switch = false;
-
     CardView card_top;
-    CardView card_bottom;
-    //CardView current_card;
-
-    //strings to put in notes
-    String string_e = "e";
-    String string_f = "f";
-    String string_fs = "fs";
-    String string_g = "g";
-    String string_gs = "gs";
-    String string_a = "a";
-    String string_as = "as";
-    String string_b = "b";
-    String string_c = "c";
-    String string_cs = "cs";
-    String string_d = "d";
-    String string_ds = "ds";
 
     String Saved_Data = "Saved_Data";
 
@@ -141,11 +98,9 @@ public class Flashcards extends AppCompatActivity {
             state = true;
         }
 
-        final TextView textview = (TextView) findViewById(R.id.input_text);
-
         //assign image variables
         Intent game_intent = getIntent();
-        lefty_bool = game_intent.getBooleanExtra("lefty", false);
+        is_lefty = game_intent.getBooleanExtra("lefty", false);
 
         //populate noteMap
         //some notes technically do not exist, but must be put in to prevent crashing
@@ -182,9 +137,8 @@ public class Flashcards extends AppCompatActivity {
         DoNotShowAgain = sharedpreferences.getBoolean("FlashcardsDoNotShowAgain", false);
 
         if(!DoNotShowAgain){
-            final Dialog dialog = new Dialog(Flashcards.this);
+            final Dialog dialog = new Dialog(flashcards.this);
             dialog.setContentView(R.layout.flashcards_instructions_layout);
-            //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             int width = ViewGroup.LayoutParams.WRAP_CONTENT;
             int height = ViewGroup.LayoutParams.WRAP_CONTENT;
             dialog.getWindow().setLayout(width, height);
@@ -203,8 +157,8 @@ public class Flashcards extends AppCompatActivity {
         b_ref.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                final Dialog dialog = new Dialog(Flashcards.this);
-                if (lefty_bool) {
+                final Dialog dialog = new Dialog(flashcards.this);
+                if (is_lefty) {
                     dialog.setContentView(R.layout.layout_reference_l);
                 } else {
                     dialog.setContentView(R.layout.layout_reference);
@@ -232,8 +186,8 @@ public class Flashcards extends AppCompatActivity {
         //setting up based on which frets user chose
         range_of_frets = game_intent.getBooleanExtra("range_of_frets", false);
 
-        //sound_bool = game_intent.getBooleanExtra("sound", false);
-        lefty_bool = game_intent.getBooleanExtra("lefty_bool", false);
+        //sound_on = game_intent.getBooleanExtra("sound", false);
+        is_lefty = game_intent.getBooleanExtra("is_lefty", false);
 
 
         //set fret number indicator
@@ -243,7 +197,7 @@ public class Flashcards extends AppCompatActivity {
 
 
         //move fret number indicator if lefty mode
-        if (lefty_bool) {
+        if (is_lefty) {
             //convert 250 dp to px
             float margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 240, res.getDisplayMetrics());
             int margin_int = (int) margin;
@@ -275,7 +229,7 @@ public class Flashcards extends AppCompatActivity {
                 //loop through six strings
                 for (int j = 5; j >= 0; --j) {
                     //if lefty mode is not on
-                    if (!lefty_bool) {
+                    if (!is_lefty) {
                         //loop through range of frets, going from left to right
                         for (int i = start; i <= end; ++i) {
                             //each fret length is 100 dp
@@ -315,13 +269,13 @@ public class Flashcards extends AppCompatActivity {
                             }
                             Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                             mp = MediaPlayer.create(this, resId);
-                            note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, fretnumber);
+                            noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, fretnumber);
                             notes.add(note_temp);
                             ++notecounter;
                             ++fretnumber;
                         }
                     }
-                    if (lefty_bool) {
+                    if (is_lefty) {
                         //loop through number of frets shown, going from right to left
                         for (int i = start; i <= end; ++i) {
                             //make coordinates for indicator based on note location on fretboard
@@ -370,7 +324,7 @@ public class Flashcards extends AppCompatActivity {
                             }
                             Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                             mp = MediaPlayer.create(this, resId);
-                            note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, fretnumber);
+                            noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, fretnumber);
                             notes.add(note_temp);
                             ++notecounter;
                             ++fretnumber;
@@ -399,7 +353,7 @@ public class Flashcards extends AppCompatActivity {
 
                 for (int j = 5; j >= 0; --j) {
                     //if lefty mode is not on
-                    if (!lefty_bool) {
+                    if (!is_lefty) {
                         //where to put indicator based on odd/even numbered frets and picture
                         if (fretnumber == 11) {
                             x_pos = 200;
@@ -444,10 +398,10 @@ public class Flashcards extends AppCompatActivity {
                         }
                         Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                         mp = MediaPlayer.create(this, resId);
-                        note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, fretnumber);
+                        noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, fretnumber);
                         notes.add(note_temp);
                     }
-                    if (lefty_bool) {
+                    if (is_lefty) {
                         x_pos = 100;
                         if (single_fret % 2 != 0) {
                             x_pos = 200;
@@ -487,7 +441,7 @@ public class Flashcards extends AppCompatActivity {
                             }
                             Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                             mp = MediaPlayer.create(this, resId);
-                            note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, single_fret);
+                            noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, single_fret);
                             notes.add(note_temp);
                         }
 
@@ -518,7 +472,7 @@ public class Flashcards extends AppCompatActivity {
 
 
             //play first note's sound
-            if (!state && sound_bool) {
+            if (!state && sound_on) {
                 notes.get(0).get_mp().start();
             }
 
@@ -550,15 +504,15 @@ public class Flashcards extends AppCompatActivity {
 
         });
 
-        card_top.setOnTouchListener(new OnSwipeTouchListener() {
+        card_top.setOnTouchListener(new onSwipeTouchListener() {
             public boolean onSwipeRight() {
-                move_card_right();
+                moveCardRight();
                 return true;
             }
 
             public boolean onSwipeLeft() {
                 nextNoteLeft();
-                move_card_left();
+                moveCardLeft();
                 return true;
             }
         });
@@ -585,11 +539,11 @@ public class Flashcards extends AppCompatActivity {
         for(int i = 0; i < name_list.length; ++i){
             Integer resId = res.getIdentifier(name_list[i], "raw", this.getPackageName());
             mp = MediaPlayer.create(this, resId);
-            notes.add(i, new note_info(x_list[i], y_list[i], name_list[i], mp, 0));
+            notes.add(i, new noteInfo(x_list[i], y_list[i], name_list[i], mp, 0));
         }
 
     }
-    public void move_indicator(){
+    public void moveIndicator(){
 
         ImageView indicator = (ImageView) findViewById(R.id.indicator);
 
@@ -606,7 +560,7 @@ public class Flashcards extends AppCompatActivity {
         x_prev = notes.get(notes_index).get_x();
         y_prev = notes.get(notes_index).get_y();
     }
-    public void move_card_right(){
+    public void moveCardRight(){
 
         CardView card = (CardView) findViewById(R.id.card_view_image);
         TextView fret_number = (TextView) findViewById(R.id.fretnumber);
@@ -633,7 +587,7 @@ public class Flashcards extends AppCompatActivity {
 
     }
 
-    public void move_card_left(){
+    public void moveCardLeft(){
 
         CardView card = (CardView) findViewById(R.id.card_view_image);
         TextView fret_number = (TextView) findViewById(R.id.fretnumber);
@@ -688,7 +642,7 @@ public class Flashcards extends AppCompatActivity {
         if(notes_index > num_notes - 1){
             notes_index = 0;
         }
-        move_indicator();
+        moveIndicator();
         setAnswer(notes.get(notes_index).get_name());
         setup();
     }
@@ -700,7 +654,7 @@ public class Flashcards extends AppCompatActivity {
         if(notes_index < 0){
             notes_index = num_notes - 1;
         }
-        move_indicator();
+        moveIndicator();
         setAnswer(notes.get(notes_index).get_name());
         setup();
     }
@@ -716,14 +670,13 @@ public class Flashcards extends AppCompatActivity {
 
         TextView number_indicator = (TextView) findViewById(R.id.fretnumber);
         ImageView overview = (ImageView) findViewById(R.id.overview);
-        RelativeLayout fretboard = (RelativeLayout) findViewById(R.id.indicator_layout);
 
         //set fret number indicator
         String fret_number = "" + fretnos;
         number_indicator.setText(fret_number);
 
         if(fretnos == 1){
-            if(lefty_bool){
+            if(is_lefty){
                 overview.setImageResource(R.drawable.overview12_l);
             }
             else{
@@ -731,28 +684,28 @@ public class Flashcards extends AppCompatActivity {
             }
         }
         if (fretnos == 3) {
-            if (lefty_bool) {
+            if (is_lefty) {
                 overview.setImageResource(R.drawable.overview34_l);
             } else {
                 overview.setImageResource(R.drawable.overview34);
             }
         }
         if (fretnos == 5) {
-            if (lefty_bool) {
+            if (is_lefty) {
                 overview.setImageResource(R.drawable.overview56_l);
             } else {
                 overview.setImageResource(R.drawable.overview56);
             }
         }
         if (fretnos == 7) {
-            if (lefty_bool) {
+            if (is_lefty) {
                 overview.setImageResource(R.drawable.overview78_l);
             } else {
                 overview.setImageResource(R.drawable.overview78);
             }
         }
         if (fretnos == 9) {
-            if (lefty_bool) {
+            if (is_lefty) {
                 overview.setImageResource(R.drawable.overview911_l);
 
             } else {
@@ -765,7 +718,7 @@ public class Flashcards extends AppCompatActivity {
         Collections.shuffle(notes, new Random(System.nanoTime()));
 
         notes_index = 0;
-        move_indicator();
+        moveIndicator();
         setAnswer(notes.get(notes_index).get_name());
         setup();
 

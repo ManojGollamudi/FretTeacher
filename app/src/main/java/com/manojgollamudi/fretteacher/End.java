@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class End extends AppCompatActivity{
+public class end extends AppCompatActivity{
     int fretnos = 0;
     boolean lefty_bool = false;
     boolean sound_bool = true;
@@ -33,24 +33,24 @@ public class End extends AppCompatActivity{
         String score_string = score + "/" + total;
         textview.setText(score_string);
 
-        update_score();
+        updateScore();
     }
 
     //for return to menu button
-    public void return_menu(View view){
-
-        Intent return_intent = new Intent(this, GameList.class);
+    public void returnMenu(View view){
+        Intent return_intent = new Intent(this, gameList.class);
         return_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(return_intent);
         finish();
     }
+
     //for restart button
     public void restart(View view) {
         Intent end_intent = getIntent();
         fretnos = end_intent.getIntExtra("fretnos", -1);
         lefty_bool = end_intent.getBooleanExtra("lefty_bool", false);
         sound_bool = end_intent.getBooleanExtra("sound_bool", false);
-        Intent restart_intent = new Intent(this, Quiz.class);
+        Intent restart_intent = new Intent(this, quiz.class);
         restart_intent.putExtra("fretnos", fretnos);
         restart_intent.putExtra("lefty_bool", lefty_bool);
         restart_intent.putExtra("sound_bool", sound_bool);
@@ -58,7 +58,7 @@ public class End extends AppCompatActivity{
         finish();
     }
 
-    public void update_score(){
+    public void updateScore(){
         SharedPreferences sharedpreferences = getSharedPreferences(Saved_Data, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         String fretnos_string = "" + fretnos;

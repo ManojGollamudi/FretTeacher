@@ -7,17 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GameList extends AppCompatActivity {
+public class gameList extends AppCompatActivity {
     boolean sound_bool = false;
     boolean lefty_bool = false;
     int fretnos = 0;
-    Button prev;
-    boolean initial = true;
     String Saved_Data = "Saved_Data";
 
     public static Toast transitionToast;
@@ -29,33 +26,33 @@ public class GameList extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        UpdateScores();
+        updateScores();
 
     }
 
-    public void Start12(View v){
+    public void start12(View v){
         fretnos = 1;
         start();
     }
-    public void Start35(View v){
+    public void start35(View v){
         fretnos = 3;
         start();
     }
-    public void Start57(View v){
+    public void start57(View v){
         fretnos = 5;
         start();
     }
-    public void Start79(View v){
+    public void start79(View v){
         fretnos = 7;
         start();
     }
-    public void Start911(View v){
+    public void start911(View v){
         fretnos = 9;
         start();
     }
 
     public void start(){
-            Intent i911 = new Intent(this, Quiz.class);
+            Intent i911 = new Intent(this, quiz.class);
             i911.putExtra("fretnos", fretnos);
             i911.putExtra("sound", sound_bool);
             i911.putExtra("lefty", lefty_bool);
@@ -91,7 +88,7 @@ public class GameList extends AppCompatActivity {
         }
     }
 
-    public void UpdateScores(){
+    public void updateScores(){
         SharedPreferences sharedpreferences = getSharedPreferences(Saved_Data, Context.MODE_PRIVATE);
         TextView score_13 = (TextView)findViewById(R.id.score_13);
         TextView score_35 = (TextView)findViewById(R.id.score_35);

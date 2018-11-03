@@ -1,14 +1,11 @@
 package com.manojgollamudi.fretteacher;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-public class TitleScreen extends AppCompatActivity {
+public class titleScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +15,7 @@ public class TitleScreen extends AppCompatActivity {
 
     public void Flashcards(View view){
 
-        Intent intent = new Intent(this, FlashcardsFretpicker.class);
+        Intent intent = new Intent(this, flashcardsFretpicker.class);
         intent.putExtra("fretnos", 1);
         intent.putExtra("lefty_bool", false);
         intent.putExtra("sound_bool", false);
@@ -27,7 +24,7 @@ public class TitleScreen extends AppCompatActivity {
 
     public void Quiz(View view){
 
-        Intent intent = new Intent(this, GameList.class);
+        Intent intent = new Intent(this, gameList.class);
         startActivity(intent);
     }
 

@@ -6,29 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.SystemClock;
-import android.support.v4.media.session.IMediaControllerCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,10 +28,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
 
-import static com.manojgollamudi.fretteacher.GameList.transitionToast;
+import static com.manojgollamudi.fretteacher.gameList.transitionToast;
 
 
-public class Quiz extends AppCompatActivity {
+public class quiz extends AppCompatActivity {
     //boolean to keep track of submit/next button. False = button named submit, true = named next.
     boolean submit_next = false;
 
@@ -83,21 +74,7 @@ public class Quiz extends AppCompatActivity {
     Vector<MediaPlayer> mp_vector = new Vector<>();
 
     //vector of name_coordinate objects
-    ArrayList<note_info> notes = new ArrayList<>();
-
-    //strings to put in notes
-    String string_e = "e";
-    String string_f = "f";
-    String string_fs = "fs";
-    String string_g = "g";
-    String string_gs = "gs";
-    String string_a = "a";
-    String string_as = "as";
-    String string_b = "b";
-    String string_c = "c";
-    String string_cs = "cs";
-    String string_d = "d";
-    String string_ds = "ds";
+    ArrayList<noteInfo> notes = new ArrayList<>();
 
     String Saved_Data = "Saved_Data";
 
@@ -124,8 +101,6 @@ public class Quiz extends AppCompatActivity {
         if(savedInstanceState != null){
             state = true;
         }
-
-        final TextView textview = (TextView)findViewById(R.id.input_text);
 
         //assign image variables
         Intent game_intent = getIntent();
@@ -167,7 +142,7 @@ public class Quiz extends AppCompatActivity {
         DoNotShowAgain = sharedpreferences.getBoolean("QuizDoNotShowAgain", false);
 
         if(!DoNotShowAgain){
-            final Dialog dialog = new Dialog(Quiz.this);
+            final Dialog dialog = new Dialog(quiz.this);
             dialog.setContentView(R.layout.quiz_instructions_layout);
             int width = ViewGroup.LayoutParams.WRAP_CONTENT;
             int height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -189,7 +164,6 @@ public class Quiz extends AppCompatActivity {
 
         //set overview image
         ImageView overview = (ImageView) findViewById(R.id.overview);
-        RelativeLayout fretboard = (RelativeLayout) findViewById(R.id.indicator_layout);
 
         if(fretnos == 3){
             if(lefty_bool){
@@ -249,7 +223,6 @@ public class Quiz extends AppCompatActivity {
         }
         //if not, populate notes vector and handle media
         else{
-            String note = indexMap.get(fretnos);
             int notecounter = fretnos;
             int fretnumber = fretnos;
             MediaPlayer mp;
@@ -294,7 +267,7 @@ public class Quiz extends AppCompatActivity {
                         }
                         Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                         mp = MediaPlayer.create(this, resId);
-                        note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, 0);
+                        noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, 0);
                         notes.add(note_temp);
                         ++notecounter;
                         ++fretnumber;
@@ -337,7 +310,7 @@ public class Quiz extends AppCompatActivity {
                         }
                         Integer resId = res.getIdentifier(str.toString(), "raw", this.getPackageName());
                         mp = MediaPlayer.create(this, resId);
-                        note_info note_temp = new note_info(x_pos, y_pos, str.toString(), mp, 0);
+                        noteInfo note_temp = new noteInfo(x_pos, y_pos, str.toString(), mp, 0);
                         notes.add(note_temp);
                         ++notecounter;
                         ++fretnumber;
@@ -385,7 +358,7 @@ public class Quiz extends AppCompatActivity {
                     if(!submit_next){
                         submit_next = true;
                         next_submit_view.setText("Next");
-                        check_value(notes.get(0));
+                        checkValue(notes.get(0));
                     }
                     //work as next button
                     else {
@@ -407,9 +380,8 @@ public class Quiz extends AppCompatActivity {
                             //go to end screen
                             Chronometer timer = (Chronometer)findViewById(R.id.timer);
                             timer.stop();
-                            String time = timer.getText().toString();
 
-                            Intent end_intent = new Intent(v.getContext(), End.class);
+                            Intent end_intent = new Intent(v.getContext(), end.class);
                             end_intent.putExtra("score_value", score);
                             end_intent.putExtra("total_value", total);
                             end_intent.putExtra("lefty_bool", lefty_bool);
@@ -417,8 +389,6 @@ public class Quiz extends AppCompatActivity {
                             end_intent.putExtra("fretnos", fretnos);
                             startActivity(end_intent);
                             finish();
-
-                            //next.setText("Return to Main Menu");
                         }
                         //if not done, continue
                         else {
@@ -527,7 +497,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     //check what the user inputted against actual value, called when SUBMIT is clicked
-    public void check_value(note_info note){
+    public void checkValue(noteInfo note){
         //make sure there is a valid input
 
             //get name of note, get rid of fret number at end
@@ -582,9 +552,6 @@ public class Quiz extends AppCompatActivity {
                 }
 
             }
-
-        //}
-
     }
 
     //prepare and execute next note, called when NEXT button is clicked
@@ -678,7 +645,7 @@ public class Quiz extends AppCompatActivity {
         for(int i = 0; i < name_list.length; ++i){
             Integer resId = res.getIdentifier(name_list[i], "raw", this.getPackageName());
             mp = MediaPlayer.create(this, resId);
-            notes.add(i, new note_info(x_list[i], y_list[i], name_list[i], mp, 0));
+            notes.add(i, new noteInfo(x_list[i], y_list[i], name_list[i], mp, 0));
         }
 
     }

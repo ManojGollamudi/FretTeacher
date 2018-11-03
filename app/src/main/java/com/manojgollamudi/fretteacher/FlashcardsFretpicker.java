@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.manojgollamudi.fretteacher.GameList.transitionToast;
+import static com.manojgollamudi.fretteacher.gameList.transitionToast;
 
 
 /**
@@ -20,7 +20,7 @@ import static com.manojgollamudi.fretteacher.GameList.transitionToast;
  */
 
 
-public class FlashcardsFretpicker extends AppCompatActivity {
+public class flashcardsFretpicker extends AppCompatActivity {
     boolean initial = true;
     boolean range_of_frets = false;
     int range_start = 0;
@@ -52,7 +52,7 @@ public class FlashcardsFretpicker extends AppCompatActivity {
 
     }
 
-    public void Choose_Range(View v){
+    public void chooseRange(View v){
         range_of_frets = true;
         //handle highlighting of buttons and show correct numberpickers
         Button b_range = (Button)findViewById(R.id.select_range_button);
@@ -93,7 +93,7 @@ public class FlashcardsFretpicker extends AppCompatActivity {
         }
     }
 
-    public void Choose_Single(View v){
+    public void chooseSingle(View v){
         range_of_frets = false;
 
         //handle highlighting of buttons
@@ -130,7 +130,7 @@ public class FlashcardsFretpicker extends AppCompatActivity {
             text_through.setVisibility(View.INVISIBLE);
         }
     }
-    public void Start(View v){
+    public void start(View v){
 
         CheckBox lefty_checkbox = (CheckBox)findViewById(R.id.lefty_checkbox);
         boolean checked = lefty_checkbox.isChecked();
@@ -150,7 +150,7 @@ public class FlashcardsFretpicker extends AppCompatActivity {
             transitionToast.show();
         }
         else{
-            Intent flashcard_intent = new Intent(this, Flashcards.class);
+            Intent flashcard_intent = new Intent(this, flashcards.class);
             flashcard_intent.putExtra("range_of_frets", range_of_frets);
             flashcard_intent.putExtra("range_start", range_start);
             flashcard_intent.putExtra("range_end", range_end);
@@ -164,7 +164,7 @@ public class FlashcardsFretpicker extends AppCompatActivity {
     }
 
     //for handling the checkboxes
-    public void LeftyCheckbox(View view){
+    public void leftyCheckbox(View view){
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
 
