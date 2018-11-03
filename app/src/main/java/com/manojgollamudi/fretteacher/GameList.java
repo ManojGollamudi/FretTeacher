@@ -1,16 +1,26 @@
 package com.manojgollamudi.fretteacher;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class GameList extends AppCompatActivity{
-    boolean sound_bool = true;
+public class GameList extends AppCompatActivity {
+    boolean sound_bool = false;
     boolean lefty_bool = false;
+    int fretnos = 0;
+    Button prev;
+    boolean initial = true;
+    String Saved_Data = "Saved_Data";
+
+    public static Toast transitionToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,70 +28,42 @@ public class GameList extends AppCompatActivity{
         setContentView(R.layout.activity_game_list);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        UpdateScores();
+
     }
 
-    protected void onResume(){
-        super.onResume();
-        //reset button colors
-        Button b12 = (Button)findViewById(R.id.button_12);
-        Button b34 = (Button)findViewById(R.id.button_34);
-        Button b56 = (Button)findViewById(R.id.button_56);
-        Button b78 = (Button)findViewById(R.id.button_78);
-        Button b911 = (Button)findViewById(R.id.button_911);
-
-        b12.setBackgroundResource(R.drawable.border_tan);
-        b34.setBackgroundResource(R.drawable.border_tan);
-        b56.setBackgroundResource(R.drawable.border_tan);
-        b78.setBackgroundResource(R.drawable.border_tan);
-        b911.setBackgroundResource(R.drawable.border_tan);
-    }
     public void Start12(View v){
-        //change button color when clicked
-        Button b = (Button)findViewById(R.id.button_12);
-        b.setBackgroundResource(R.drawable.border_tan_filled);
-        Intent i12 = new Intent(this, MainGame.class);
-        i12.putExtra("fretnos", 12);
-        i12.putExtra("sound", sound_bool);
-        i12.putExtra("lefty", lefty_bool);
-        startActivity(i12);
+        fretnos = 1;
+        start();
     }
-    public void Start34(View v){
-        Button b = (Button)findViewById(R.id.button_34);
-        b.setBackgroundResource(R.drawable.border_tan_filled);
-        Intent i34 = new Intent(this, MainGame.class);
-        i34.putExtra("fretnos", 34);
-        i34.putExtra("sound", sound_bool);
-        i34.putExtra("lefty", lefty_bool);
-        startActivity(i34);
+    public void Start35(View v){
+        fretnos = 3;
+        start();
     }
-    public void Start56(View v){
-        Button b = (Button)findViewById(R.id.button_56);
-        b.setBackgroundResource(R.drawable.border_tan_filled);
-        Intent i56 = new Intent(this, MainGame.class);
-        i56.putExtra("fretnos", 56);
-        i56.putExtra("sound", sound_bool);
-        i56.putExtra("lefty", lefty_bool);
-        startActivity(i56);
+    public void Start57(View v){
+        fretnos = 5;
+        start();
     }
-    public void Start78(View v){
-        Button b = (Button)findViewById(R.id.button_78);
-        b.setBackgroundResource(R.drawable.border_tan_filled);
-        Intent i78 = new Intent(this, MainGame.class);
-        i78.putExtra("fretnos", 78);
-        i78.putExtra("sound", sound_bool);
-        i78.putExtra("lefty", lefty_bool);
-        startActivity(i78);
+    public void Start79(View v){
+        fretnos = 7;
+        start();
     }
     public void Start911(View v){
-        Button b = (Button)findViewById(R.id.button_911);
-        b.setBackgroundResource(R.drawable.border_tan_filled);
-        Intent i911 = new Intent(this, MainGame.class);
-        i911.putExtra("fretnos", 911);
-        i911.putExtra("sound", sound_bool);
-        i911.putExtra("lefty", lefty_bool);
-        startActivity(i911);
+        fretnos = 9;
+        start();
     }
 
+    public void start(){
+            Intent i911 = new Intent(this, Quiz.class);
+            i911.putExtra("fretnos", fretnos);
+            i911.putExtra("sound", sound_bool);
+            i911.putExtra("lefty", lefty_bool);
+            transitionToast = Toast.makeText(this, "Loading...", Toast.LENGTH_LONG);
+            transitionToast.show();
+            startActivity(i911);
+            finish();
+    }
 
     //for handling the checkboxes
     public void onClickCheckbox(View view){
@@ -94,7 +76,7 @@ public class GameList extends AppCompatActivity{
                 if(checked){
                     sound_bool = true;
                 }
-            else{
+                else{
                     sound_bool = false;
                 }
                 break;
@@ -102,13 +84,52 @@ public class GameList extends AppCompatActivity{
                 if(checked){
                     lefty_bool = true;
                 }
-            else{
+                else{
                     lefty_bool = false;
                 }
                 break;
         }
     }
 
-}
+    public void UpdateScores(){
+        SharedPreferences sharedpreferences = getSharedPreferences(Saved_Data, Context.MODE_PRIVATE);
+        TextView score_13 = (TextView)findViewById(R.id.score_13);
+        TextView score_35 = (TextView)findViewById(R.id.score_35);
+        TextView score_57 = (TextView)findViewById(R.id.score_57);
+        TextView score_79 = (TextView)findViewById(R.id.score_79);
+        TextView score_911 = (TextView)findViewById(R.id.score_911);
+
+        int best_13 = sharedpreferences.getInt("1", -1);
+        if(best_13 != -1){
+            String string_13 = "Best Score: " + best_13 + " / 18";
+            score_13.setText(string_13);
+        }
+
+        int best_35 = sharedpreferences.getInt("3", -1);
+        if(best_35 != -1){
+            String string_35 = "Best Score: " + best_35 + " / 18";
+            score_35.setText(string_35);
+        }
+
+        int best_57 = sharedpreferences.getInt("5", -1);
+        if(best_57 != -1){
+            String string_57 = "Best Score: " + best_57 + " / 18";
+            score_57.setText(string_57);
+        }
+
+        int best_79 = sharedpreferences.getInt("7", -1);
+        if(best_79 != -1){
+            String string_79 = "Best Score: " + best_79 + " / 18";
+            score_79.setText(string_79);
+        }
+
+        int best_911 = sharedpreferences.getInt("9", -1);
+        if(best_911 != -1){
+            String string_911 = "Best Score: " + best_911 + " / 18";
+            score_911.setText(string_911);
+        }
+    }
+
+    }
 
 

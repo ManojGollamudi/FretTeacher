@@ -15,40 +15,286 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextColor="@color/dark" />
 
+    <RelativeLayout
+        android:id="@+id/checkboxlayout"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true">
+        <CheckBox
+            android:id="@+id/checkbox_lefty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:buttonTint="@color/dark"
+            android:text="Lefty mode"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:onClick="onClickCheckbox" />
 
-            <TextView
-                android:id="@+id/select_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:layout_below="@+id/my_toolbar"
-                android:textSize="15sp"
-                android:text="Select a range of frets:"
-                android:textColor="@color/dark"/>
+        <CheckBox
+            android:id="@+id/checkbox_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_above="@id/checkbox_lefty"
+            android:textColor="@color/white"
+            android:onClick="onClickCheckbox"
+            android:buttonTint="@color/dark"
+            android:text="Play sound" />
 
-            <CheckBox
-                android:id="@+id/checkbox_lefty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:buttonTint="@color/dark"
-                android:text="Lefty mode"
-                android:textColor="@color/white"
-                android:onClick="onClickCheckbox" />
+    </RelativeLayout>
 
-            <CheckBox
-                android:id="@+id/checkbox_sound"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/white"
-                android:checked="true"
-                android:onClick="onClickCheckbox"
-                android:buttonTint="@color/dark"
-                android:text="Play sound" />
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_toolbar"
+        android:layout_above="@id/checkboxlayout">
+    
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/Button13"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Frets 1 - 3"
+                android:onClick="Start12"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Button13"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/score_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Score: -- "
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Time: -- "
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/Button35"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Frets 3 - 5"
+                android:onClick="Start35"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Button35"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/score_35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Score: -- "
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Time: -- "
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+
+                    android:gravity="center"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/Button57"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Frets 5 - 7"
+                android:onClick="Start57"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Button57"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/score_57"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Score: -- "
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Time: -- "
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/Button79"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Frets 7 - 9"
+                android:onClick="Start79"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Button79"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/score_79"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Score: -- "
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Time: -- "
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/Button911"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Frets 9 - 11"
+                android:onClick="Start911"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/Button911"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/score_911"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Score: -- "
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Best Time: -- "
+                    android:textColor="@color/white"
+                    android:visibility="invisible"
+
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+
+    </ScrollView>
+    
+    
+
+
 
 
 
